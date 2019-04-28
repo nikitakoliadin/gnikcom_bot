@@ -11,17 +11,17 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
-public class Config {
+public class ApplicationConfig {
 
-    private static Config instance;
+    private static ApplicationConfig instance;
 
-    private Config() throws CouldNotStartApplicationException {
+    private ApplicationConfig() throws CouldNotStartApplicationException {
         init();
     }
 
-    public static Config getInstance() throws CouldNotStartApplicationException {
+    public static ApplicationConfig getInstance() throws CouldNotStartApplicationException {
         if (instance == null) {
-            instance = new Config();
+            instance = new ApplicationConfig();
         }
         return instance;
     }
