@@ -17,7 +17,7 @@ public class CommandService {
     public String getTextCommand(Update update) throws TelegramBotException {
         val message = getMessage(update);
         if (hasTextMessage(message)) {
-            return getCleanCommand(message);
+            return getUserCommand(message);
         } else {
             return getSystemCommand(message);
         }
@@ -38,7 +38,7 @@ public class CommandService {
         return message.hasText();
     }
 
-    private String getCleanCommand(Message message) {
+    private String getUserCommand(Message message) {
         val command = message.getText();
         if (command.contains("@")) {
             val endIndex = command.indexOf("@");

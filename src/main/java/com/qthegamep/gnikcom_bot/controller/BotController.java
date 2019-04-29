@@ -12,7 +12,7 @@ import lombok.val;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-public class MainController extends TelegramLongPollingBot {
+public class BotController extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {

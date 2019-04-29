@@ -7,17 +7,17 @@ public class CommandFactory {
 
     public Command createCommand(String command) {
         switch (command) {
-            case CommandsUtil.INVITE_SYSTEM_COMMAND: {
-                return new InviteCommand();
-            }
-            case CommandsUtil.REMOVE_SYSTEM_COMMAND: {
-                return new RemoveCommand();
-            }
             case CommandsUtil.START_COMMAND: {
                 return new StartCommand();
             }
             case CommandsUtil.HELP_COMMAND: {
                 return new HelpCommand();
+            }
+            case CommandsUtil.INVITE_SYSTEM_COMMAND: {
+                return new InviteCommand();
+            }
+            case CommandsUtil.REMOVE_SYSTEM_COMMAND: {
+                return new RemoveCommand();
             }
             default: {
                 return new DefaultCommand();
