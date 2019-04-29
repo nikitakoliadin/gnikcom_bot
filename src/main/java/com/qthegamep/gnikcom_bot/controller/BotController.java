@@ -29,6 +29,7 @@ public class BotController extends TelegramLongPollingBot {
         logRequestInfo(update);
         val textCommand = getTextCommand(update);
         val command = getCommand(textCommand);
+        val result = command.execute(update);
         // TODO: Implements
     }
 
