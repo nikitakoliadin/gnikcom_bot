@@ -3,6 +3,7 @@ package com.qthegamep.gnikcom_bot.controller;
 import com.qthegamep.gnikcom_bot.command.Command;
 import com.qthegamep.gnikcom_bot.exception.TelegramBotException;
 import com.qthegamep.gnikcom_bot.factory.CommandFactory;
+import com.qthegamep.gnikcom_bot.service.CommandService;
 import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
 import com.qthegamep.gnikcom_bot.util.LogUtil;
 
@@ -26,7 +27,8 @@ public class MainController extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) throws TelegramBotException {
         logRequestInfo(update);
-        val command = getCommand(update);
+        val textCommand = getTextCommand(update);
+        val command = getCommand(textCommand);
         // TODO: Implements
     }
 
@@ -34,8 +36,13 @@ public class MainController extends TelegramLongPollingBot {
         LogUtil.logInfo("Request: {}", update);
     }
 
-    private Command getCommand(Update update) throws TelegramBotException {
+    private String getTextCommand(Update update) throws TelegramBotException {
+        val commandService = new CommandService();
+        return commandService.getTextCommand(update);
+    }
+
+    private Command getCommand(String textCommand) {
         val commandFactory = new CommandFactory();
-        return commandFactory.getCommand(update);
+        return commandFactory.createCommand(textCommand);
     }
 }
