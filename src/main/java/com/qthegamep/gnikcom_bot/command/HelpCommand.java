@@ -9,7 +9,9 @@ public class HelpCommand implements Command {
 
     @Override
     public SendMessage execute(Update update) throws TelegramBotException {
+        logStartOfCommand();
         // TODO: Implements
+        logEndOfCommand();
         return null;
     }
 }
