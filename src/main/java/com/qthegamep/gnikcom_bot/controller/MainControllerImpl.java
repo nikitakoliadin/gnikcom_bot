@@ -1,6 +1,12 @@
 package com.qthegamep.gnikcom_bot.controller;
 
+import com.qthegamep.gnikcom_bot.command.Command;
+import com.qthegamep.gnikcom_bot.exception.TelegramBotException;
+import com.qthegamep.gnikcom_bot.factory.CommandFactory;
 import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
+import com.qthegamep.gnikcom_bot.util.LogUtil;
+
+import lombok.val;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -18,8 +24,18 @@ public class MainControllerImpl extends TelegramLongPollingBot {
     }
 
     @Override
-    public void onUpdateReceived(Update update) {
+    public void onUpdateReceived(Update update) throws TelegramBotException {
+        logRequestInfo(update);
+        val command = getCommand(update);
         // TODO: Implements
-        System.out.println(update.toString());
+    }
+
+    private void logRequestInfo(Update update) {
+        LogUtil.logInfo("Request: {}", update);
+    }
+
+    private Command getCommand(Update update) throws TelegramBotException {
+        val commandFactory = new CommandFactory();
+        return commandFactory.getCommand(update);
     }
 }
