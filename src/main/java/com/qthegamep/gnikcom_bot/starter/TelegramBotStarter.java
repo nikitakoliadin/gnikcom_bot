@@ -1,6 +1,6 @@
 package com.qthegamep.gnikcom_bot.starter;
 
-import com.qthegamep.gnikcom_bot.controller.MainControllerImpl;
+import com.qthegamep.gnikcom_bot.controller.MainController;
 import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
 import com.qthegamep.gnikcom_bot.util.LogUtil;
 
@@ -30,8 +30,8 @@ class TelegramBotStarter {
         return new TelegramBotsApi();
     }
 
-    private MainControllerImpl createBot() {
-        return new MainControllerImpl();
+    private MainController createBot() {
+        return new MainController();
     }
 
     private void logSuccessStart() {
