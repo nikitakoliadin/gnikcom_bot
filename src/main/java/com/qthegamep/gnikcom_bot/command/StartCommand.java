@@ -39,8 +39,14 @@ public class StartCommand implements Command {
             // TODO: Implements
             return "_Test user start command_";
         } else {
+            setReplyToMessageId(message);
             // TODO: Implements
             return "_Test group start command_";
         }
+    }
+
+    private void setReplyToMessageId(Message message) {
+        val messageId = message.getMessageId();
+        response.setReplyToMessageId(messageId);
     }
 }
