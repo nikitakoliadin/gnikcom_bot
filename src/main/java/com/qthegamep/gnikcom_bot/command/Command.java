@@ -13,24 +13,28 @@ import java.io.Serializable;
 public interface Command {
 
     default BotApiMethod<? extends Serializable> execute(Update update) {
-        logStartOfCommand();
+        logStartOfCommand(update);
         val response = buildResponse(update);
-        logEndOfCommand();
+        logEndOfCommand(update);
         return response;
     }
 
     BotApiMethod<? extends Serializable> buildResponse(Update update);
 
-    private void logStartOfCommand() {
-        log("Started execution of [{}]");
+    private void logStartOfCommand(Update update) {
+        log("Started execution of [{}] from {id: {}, name: {} {}}", update);
     }
 
-    private void logEndOfCommand() {
-        log("Ended execution of [{}]");
+    private void logEndOfCommand(Update update) {
+        log("Ended execution of [{}] from {id: {}, name: {} {}}", update);
     }
 
-    private void log(String message) {
-        val commandName = this.getClass().getSimpleName();
-        LogUtil.logInfo(message, commandName);
+    private void log(String message, Update update) {
+        val command = this.getClass().getSimpleName();
+        val user = update.getMessage().getFrom();
+        val userId = user.getId();
+        val firstName = user.getFirstName();
+        val lastName = user.getLastName();
+        LogUtil.logInfo(message, command, userId, firstName, lastName);
     }
 }
