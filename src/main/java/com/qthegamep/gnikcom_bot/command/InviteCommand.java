@@ -9,6 +9,8 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 
+import java.util.List;
+
 public class InviteCommand implements Command {
 
     private SendMessage response = new SendMessage();
@@ -38,26 +40,28 @@ public class InviteCommand implements Command {
     }
 
     private String getText(Message message) {
-        val newUser = getNewUser(message);
-        if (isBot(newUser)) {
+        val newChatMembers = message.getNewChatMembers();
+        if (containsThisBot(newChatMembers)) {
             // TODO: Implements
             return "_Test bot invite command_";
-        } else {
-            val firstName = newUser.getFirstName();
-            val lastName = newUser.getLastName();
+        }
+        if (isOneNewChatMember(newChatMembers)) {
             // TODO: Implements
-            return "_Test user invite command " + firstName + " " + lastName + "_";
+            return "_Test user invite command_";
+        } else {
+            // TODO: Implements
+            return "_Test users invite command_";
         }
     }
 
-    private User getNewUser(Message message) {
-        val newChatMembers = message.getNewChatMembers();
-        return newChatMembers.get(0);
+    private boolean containsThisBot(List<User> newChatMembers) {
+        val botUserName = System.getProperty(ConstantsUtil.TELEGRAM_BOT_USERNAME);
+        return newChatMembers.stream()
+                .map(User::getUserName)
+                .anyMatch(botUserName::equals);
     }
 
-    private boolean isBot(User newUser) {
-        val botUserName = System.getProperty(ConstantsUtil.TELEGRAM_BOT_USERNAME);
-        val newUserName = newUser.getUserName();
-        return botUserName.equals(newUserName);
+    private boolean isOneNewChatMember(List<User> newChatMembers) {
+        return newChatMembers.size() == 1;
     }
 }
