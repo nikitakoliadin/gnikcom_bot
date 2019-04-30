@@ -8,10 +8,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class HelpCommand implements Command {
 
     @Override
-    public SendMessage execute(Update update) throws TelegramBotException {
-        logStartOfCommand();
+    public SendMessage buildResponse(Update update) throws TelegramBotException {
         // TODO: Implements
-        logEndOfCommand();
         return null;
     }
 }

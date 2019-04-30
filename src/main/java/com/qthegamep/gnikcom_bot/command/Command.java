@@ -13,15 +13,25 @@ import java.io.Serializable;
 @FunctionalInterface
 public interface Command {
 
-    BotApiMethod<? extends Serializable> execute(Update update) throws TelegramBotException;
-
-    default void logStartOfCommand() {
-        val commandName = this.getClass().getSimpleName();
-        LogUtil.logInfo("Started execution of [{}]", commandName);
+    default BotApiMethod<? extends Serializable> execute(Update update) throws TelegramBotException {
+        logStartOfCommand();
+        val response = buildResponse(update);
+        logEndOfCommand();
+        return response;
     }
 
-    default void logEndOfCommand() {
+    BotApiMethod<? extends Serializable> buildResponse(Update update) throws TelegramBotException;
+
+    private void logStartOfCommand() {
+        log("Started execution of [{}]");
+    }
+
+    private void logEndOfCommand() {
+        log("Ended execution of [{}]");
+    }
+
+    private void log(String message) {
         val commandName = this.getClass().getSimpleName();
-        LogUtil.logInfo("Ended execution of [{}]", commandName);
+        LogUtil.logInfo(message, commandName);
     }
 }
