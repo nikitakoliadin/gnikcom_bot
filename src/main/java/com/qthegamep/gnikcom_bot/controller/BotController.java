@@ -10,7 +10,11 @@ import com.qthegamep.gnikcom_bot.util.LogUtil;
 import lombok.val;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.io.Serializable;
 
 public class BotController extends TelegramLongPollingBot {
 
@@ -29,8 +33,8 @@ public class BotController extends TelegramLongPollingBot {
         logRequestInfo(update);
         val textCommand = getTextCommand(update);
         val command = getCommand(textCommand);
-        val result = command.execute(update);
-        // TODO: Implements
+        val response = command.execute(update);
+        sendResponse(response);
     }
 
     private void logRequestInfo(Update update) {
@@ -45,5 +49,15 @@ public class BotController extends TelegramLongPollingBot {
     private Command getCommand(String textCommand) {
         val commandFactory = new CommandFactory();
         return commandFactory.createCommand(textCommand);
+    }
+
+    private void sendResponse(BotApiMethod<? extends Serializable> response) throws TelegramBotException {
+        try {
+            val responseResult = execute(response);
+            LogUtil.logInfo("Response: {}", responseResult);
+        } catch (TelegramApiException e) {
+            LogUtil.logError("ERROR", e);
+            throw new TelegramBotException(e.getMessage(), e);
+        }
     }
 }
