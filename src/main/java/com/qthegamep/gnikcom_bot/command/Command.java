@@ -1,6 +1,5 @@
 package com.qthegamep.gnikcom_bot.command;
 
-import com.qthegamep.gnikcom_bot.exception.TelegramBotException;
 import com.qthegamep.gnikcom_bot.util.LogUtil;
 
 import lombok.val;
@@ -13,14 +12,14 @@ import java.io.Serializable;
 @FunctionalInterface
 public interface Command {
 
-    default BotApiMethod<? extends Serializable> execute(Update update) throws TelegramBotException {
+    default BotApiMethod<? extends Serializable> execute(Update update) {
         logStartOfCommand();
         val response = buildResponse(update);
         logEndOfCommand();
         return response;
     }
 
-    BotApiMethod<? extends Serializable> buildResponse(Update update) throws TelegramBotException;
+    BotApiMethod<? extends Serializable> buildResponse(Update update);
 
     private void logStartOfCommand() {
         log("Started execution of [{}]");
