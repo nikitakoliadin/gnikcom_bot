@@ -1,5 +1,6 @@
 package com.qthegamep.gnikcom_bot.command;
 
+import com.qthegamep.gnikcom_bot.exception.CommandShouldNotBeExecutedException;
 import com.qthegamep.gnikcom_bot.util.LogUtil;
 
 import lombok.val;
@@ -12,14 +13,14 @@ import java.io.Serializable;
 @FunctionalInterface
 public interface Command {
 
-    default BotApiMethod<? extends Serializable> execute(Update update) {
+    default BotApiMethod<? extends Serializable> execute(Update update) throws CommandShouldNotBeExecutedException {
         logStartOfCommand(update);
         val response = buildResponse(update);
         logEndOfCommand(update);
         return response;
     }
 
-    BotApiMethod<? extends Serializable> buildResponse(Update update);
+    BotApiMethod<? extends Serializable> buildResponse(Update update) throws CommandShouldNotBeExecutedException;
 
     private void logStartOfCommand(Update update) {
         log("Started execution of [{}] from {id: {}, name: {} {}}", update);
