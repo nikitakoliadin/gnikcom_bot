@@ -15,7 +15,7 @@ public class DefaultCommand implements Command {
         val message = update.getMessage();
         setFlags();
         setChatId(message);
-        setText();
+        setText(message);
         return response;
     }
 
@@ -29,13 +29,18 @@ public class DefaultCommand implements Command {
         response.setChatId(chatId);
     }
 
-    private void setText() {
-        val text = getText();
+    private void setText(Message message) {
+        val text = getText(message);
         response.setText(text);
     }
 
-    private String getText() {
-        // TODO: Implements
-        return "_Test default command_";
+    private String getText(Message message) {
+        if (message.hasText()) {
+            // TODO: Implements
+            return "_Test not found default command_";
+        } else {
+            // TODO: Implements
+            return "_Test create group default command_";
+        }
     }
 }
