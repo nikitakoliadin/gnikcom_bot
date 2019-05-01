@@ -1,6 +1,6 @@
 package com.qthegamep.gnikcom_bot.command;
 
-import com.qthegamep.gnikcom_bot.exception.TelegramBotException;
+import com.qthegamep.gnikcom_bot.exception.CommandShouldNotBeExecutedException;
 import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
 
 import lombok.val;
@@ -15,7 +15,7 @@ public class RemoveCommand implements Command {
     private SendMessage response = new SendMessage();
 
     @Override
-    public SendMessage buildResponse(Update update) throws TelegramBotException {
+    public SendMessage buildResponse(Update update) throws CommandShouldNotBeExecutedException {
         val message = update.getMessage();
         setFlags();
         setChatId(message);
@@ -33,12 +33,12 @@ public class RemoveCommand implements Command {
         response.setChatId(chatId);
     }
 
-    private void setText(Message message) throws TelegramBotException {
+    private void setText(Message message) throws CommandShouldNotBeExecutedException {
         val text = getText(message);
         response.setText(text);
     }
 
-    private String getText(Message message) throws TelegramBotException {
+    private String getText(Message message) throws CommandShouldNotBeExecutedException {
         val leftChatMember = message.getLeftChatMember();
         checkBotRemoved(leftChatMember);
         val firstName = leftChatMember.getFirstName();
@@ -47,11 +47,13 @@ public class RemoveCommand implements Command {
         return "_Test remove command " + firstName + " " + lastName + "_";
     }
 
-    private void checkBotRemoved(User leftChatMember) throws TelegramBotException {
+    private void checkBotRemoved(User leftChatMember) throws CommandShouldNotBeExecutedException {
         val botUserName = System.getProperty(ConstantsUtil.TELEGRAM_BOT_USERNAME);
         val leftUserName = leftChatMember.getUserName();
         if (botUserName.equals(leftUserName)) {
-            throw new TelegramBotException("Could not send message to chat when bot removed!");
+            throw new CommandShouldNotBeExecutedException(
+                    "Message could not be sent to the chat when the bot was removed!"
+            );
         }
     }
 }
