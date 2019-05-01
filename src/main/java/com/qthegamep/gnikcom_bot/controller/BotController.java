@@ -38,7 +38,7 @@ public class BotController extends TelegramLongPollingBot {
             val response = command.execute(update);
             sendResponse(response);
         } catch (CommandShouldNotBeExecutedException e) {
-            LogUtil.logError("{}", e.getMessage());
+            LogUtil.logWarn("{}", e.getMessage());
         } catch (TelegramApiException e) {
             LogUtil.logError("ERROR", e);
             throw new TelegramBotException(e.getMessage(), e);
