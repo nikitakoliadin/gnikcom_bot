@@ -11,27 +11,16 @@ import org.telegram.telegrambots.meta.api.objects.User;
 
 import java.util.List;
 
-public class InviteCommand implements Command {
-
-    private SendMessage response = new SendMessage();
+public class InviteCommand extends BaseCommand implements Command {
 
     @Override
     public SendMessage buildResponse(Update update) {
+        enableMarkdown();
+        enableNotification();
         val message = update.getMessage();
-        setFlags();
         setChatId(message);
         setText(message);
         return response;
-    }
-
-    private void setFlags() {
-        response.enableMarkdown(true);
-        response.enableNotification();
-    }
-
-    private void setChatId(Message message) {
-        val chatId = message.getChatId();
-        response.setChatId(chatId);
     }
 
     private void setText(Message message) {
