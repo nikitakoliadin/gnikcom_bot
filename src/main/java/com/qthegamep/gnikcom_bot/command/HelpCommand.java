@@ -1,6 +1,6 @@
 package com.qthegamep.gnikcom_bot.command;
 
-import com.qthegamep.gnikcom_bot.util.CommandsUtil;
+import com.qthegamep.gnikcom_bot.util.CommandTextsUtil;
 
 import lombok.val;
 
@@ -24,7 +24,7 @@ public class HelpCommand extends BaseCommand implements Command {
     }
 
     private String getText() {
-        val text = CommandsUtil.getRandomTextFrom(CommandsUtil.HELP_COMMAND_TEXTS);
+        val text = CommandTextsUtil.getRandomTextFrom(CommandTextsUtil.HELP_COMMAND_TEXTS);
         return formatToItalicText(text);
     }
 }

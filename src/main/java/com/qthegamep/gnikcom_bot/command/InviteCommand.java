@@ -1,6 +1,6 @@
 package com.qthegamep.gnikcom_bot.command;
 
-import com.qthegamep.gnikcom_bot.util.CommandsUtil;
+import com.qthegamep.gnikcom_bot.util.CommandTextsUtil;
 import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
 
 import lombok.val;
@@ -31,14 +31,14 @@ public class InviteCommand extends BaseCommand implements Command {
     private String getText(Message message) {
         val newChatMembers = message.getNewChatMembers();
         if (containsThisBot(newChatMembers)) {
-            val text = CommandsUtil.getRandomTextFrom(CommandsUtil.INVITE_BOT_COMMAND_TEXTS);
+            val text = CommandTextsUtil.getRandomTextFrom(CommandTextsUtil.INVITE_BOT_COMMAND_TEXTS);
             return formatToItalicText(text);
         }
         if (isOneNewChatMember(newChatMembers)) {
-            val text = CommandsUtil.getRandomTextFrom(CommandsUtil.INVITE_USER_COMMAND_TEXTS);
+            val text = CommandTextsUtil.getRandomTextFrom(CommandTextsUtil.INVITE_USER_COMMAND_TEXTS);
             return formatToItalicText(text);
         } else {
-            val text = CommandsUtil.getRandomTextFrom(CommandsUtil.INVITE_USERS_COMMAND_TEXTS);
+            val text = CommandTextsUtil.getRandomTextFrom(CommandTextsUtil.INVITE_USERS_COMMAND_TEXTS);
             return formatToItalicText(text);
         }
     }

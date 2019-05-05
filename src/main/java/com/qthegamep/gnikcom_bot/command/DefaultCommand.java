@@ -1,6 +1,6 @@
 package com.qthegamep.gnikcom_bot.command;
 
-import com.qthegamep.gnikcom_bot.util.CommandsUtil;
+import com.qthegamep.gnikcom_bot.util.CommandTextsUtil;
 
 import lombok.val;
 
@@ -26,10 +26,10 @@ public class DefaultCommand extends BaseCommand implements Command {
 
     private String getText(Message message) {
         if (message.hasText()) {
-            val text = CommandsUtil.getRandomTextFrom(CommandsUtil.DEFAULT_NOT_FOUND_COMMAND_TEXTS);
+            val text = CommandTextsUtil.getRandomTextFrom(CommandTextsUtil.DEFAULT_NOT_FOUND_COMMAND_TEXTS);
             return formatToItalicText(text);
         } else {
-            val text = CommandsUtil.getRandomTextFrom(CommandsUtil.DEFAULT_CREATE_GROUP_COMMAND_TEXTS);
+            val text = CommandTextsUtil.getRandomTextFrom(CommandTextsUtil.DEFAULT_CREATE_GROUP_COMMAND_TEXTS);
             return formatToItalicText(text);
         }
     }
