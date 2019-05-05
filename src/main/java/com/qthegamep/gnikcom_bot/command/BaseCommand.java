@@ -26,4 +26,8 @@ abstract class BaseCommand implements Command {
         val messageId = message.getMessageId();
         response.setReplyToMessageId(messageId);
     }
+
+    String formatToItalicText(String text) {
+        return "_" + text + "_";
+    }
 }
