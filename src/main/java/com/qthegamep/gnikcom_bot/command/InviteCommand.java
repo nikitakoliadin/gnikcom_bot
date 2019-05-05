@@ -1,7 +1,7 @@
 package com.qthegamep.gnikcom_bot.command;
 
 import com.qthegamep.gnikcom_bot.util.CommandTextsUtil;
-import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
+import com.qthegamep.gnikcom_bot.util.ApplicationUtil;
 
 import lombok.val;
 
@@ -44,7 +44,7 @@ public class InviteCommand extends BaseCommand implements Command {
     }
 
     private boolean containsThisBot(List<User> newChatMembers) {
-        val botUserName = System.getProperty(ConstantsUtil.TELEGRAM_BOT_USERNAME);
+        val botUserName = System.getProperty(ApplicationUtil.TELEGRAM_BOT_USERNAME);
         return newChatMembers.stream()
                 .map(User::getUserName)
                 .anyMatch(botUserName::equals);

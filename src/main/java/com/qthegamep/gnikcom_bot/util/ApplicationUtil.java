@@ -3,7 +3,7 @@ package com.qthegamep.gnikcom_bot.util;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class ConstantsUtil {
+public class ApplicationUtil {
 
     public final String LOG_PATH = "log.path";
     public final String CONFIG_PATH = "config.path";

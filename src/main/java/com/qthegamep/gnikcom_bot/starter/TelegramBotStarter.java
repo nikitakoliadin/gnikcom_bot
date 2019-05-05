@@ -1,7 +1,7 @@
 package com.qthegamep.gnikcom_bot.starter;
 
 import com.qthegamep.gnikcom_bot.controller.BotController;
-import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
+import com.qthegamep.gnikcom_bot.util.ApplicationUtil;
 import com.qthegamep.gnikcom_bot.util.LogUtil;
 
 import lombok.experimental.UtilityClass;
@@ -35,6 +35,6 @@ class TelegramBotStarter {
     }
 
     private void logSuccessStart() {
-        LogUtil.logInfo("Telegram bot \"{}\" was started!", System.getProperty(ConstantsUtil.TELEGRAM_BOT_NAME));
+        LogUtil.logInfo("Telegram bot \"{}\" was started!", System.getProperty(ApplicationUtil.TELEGRAM_BOT_NAME));
     }
 }

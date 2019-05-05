@@ -5,7 +5,7 @@ import com.qthegamep.gnikcom_bot.exception.CommandShouldNotBeExecutedException;
 import com.qthegamep.gnikcom_bot.exception.TelegramBotException;
 import com.qthegamep.gnikcom_bot.factory.CommandFactory;
 import com.qthegamep.gnikcom_bot.service.CommandService;
-import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
+import com.qthegamep.gnikcom_bot.util.ApplicationUtil;
 import com.qthegamep.gnikcom_bot.util.LogUtil;
 
 import lombok.val;
@@ -21,12 +21,12 @@ public class BotController extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return System.getProperty(ConstantsUtil.TELEGRAM_BOT_USERNAME);
+        return System.getProperty(ApplicationUtil.TELEGRAM_BOT_USERNAME);
     }
 
     @Override
     public String getBotToken() {
-        return System.getProperty(ConstantsUtil.TELEGRAM_BOT_TOKEN);
+        return System.getProperty(ApplicationUtil.TELEGRAM_BOT_TOKEN);
     }
 
     @Override

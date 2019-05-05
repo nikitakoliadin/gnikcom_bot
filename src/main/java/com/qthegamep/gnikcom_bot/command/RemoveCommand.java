@@ -2,7 +2,7 @@ package com.qthegamep.gnikcom_bot.command;
 
 import com.qthegamep.gnikcom_bot.exception.CommandShouldNotBeExecutedException;
 import com.qthegamep.gnikcom_bot.util.CommandTextsUtil;
-import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
+import com.qthegamep.gnikcom_bot.util.ApplicationUtil;
 
 import lombok.val;
 
@@ -23,7 +23,7 @@ public class RemoveCommand extends BaseCommand implements Command {
     }
 
     private void checkIfThisBotWasRemoved(Message message) throws CommandShouldNotBeExecutedException {
-        val botUserName = System.getProperty(ConstantsUtil.TELEGRAM_BOT_USERNAME);
+        val botUserName = System.getProperty(ApplicationUtil.TELEGRAM_BOT_USERNAME);
         val leftUserName = message.getLeftChatMember().getUserName();
         if (botUserName.equals(leftUserName)) {
             throw new CommandShouldNotBeExecutedException(

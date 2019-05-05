@@ -1,7 +1,7 @@
 package com.qthegamep.gnikcom_bot.config;
 
 import com.qthegamep.gnikcom_bot.exception.CouldNotStartApplicationException;
-import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
+import com.qthegamep.gnikcom_bot.util.ApplicationUtil;
 import com.qthegamep.gnikcom_bot.util.LogUtil;
 
 import lombok.val;
@@ -39,14 +39,14 @@ public class ApplicationConfig {
     }
 
     private static void logInfo() {
-        LogUtil.logWarn("{} = {}", ConstantsUtil.LOG_PATH, System.getProperty(ConstantsUtil.LOG_PATH));
-        LogUtil.logWarn("{} = {}", ConstantsUtil.CONFIG_PATH, System.getProperty(ConstantsUtil.CONFIG_PATH));
+        LogUtil.logWarn("{} = {}", ApplicationUtil.LOG_PATH, System.getProperty(ApplicationUtil.LOG_PATH));
+        LogUtil.logWarn("{} = {}", ApplicationUtil.CONFIG_PATH, System.getProperty(ApplicationUtil.CONFIG_PATH));
     }
 
     private static Properties loadProperties() throws IOException {
         val properties = new Properties();
         properties.load(new InputStreamReader(new FileInputStream(
-                System.getProperty(ConstantsUtil.CONFIG_PATH)),
+                System.getProperty(ApplicationUtil.CONFIG_PATH)),
                 StandardCharsets.UTF_8
         ));
         return properties;
