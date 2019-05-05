@@ -1,6 +1,7 @@
 package com.qthegamep.gnikcom_bot.command;
 
 import com.qthegamep.gnikcom_bot.exception.CommandShouldNotBeExecutedException;
+import com.qthegamep.gnikcom_bot.util.CommandsUtil;
 import com.qthegamep.gnikcom_bot.util.ConstantsUtil;
 
 import lombok.val;
@@ -41,7 +42,8 @@ public class RemoveCommand extends BaseCommand implements Command {
         val leftChatMember = message.getLeftChatMember();
         val firstName = leftChatMember.getFirstName();
         val lastName = leftChatMember.getLastName();
-        // TODO: Implements
-        return "_Test remove command " + firstName + " " + lastName + "_";
+        val text = CommandsUtil.getRandomTextFrom(CommandsUtil.REMOVE_COMMAND_TEXTS);
+        val textWithName = text + " " + firstName + " " + lastName;
+        return formatToItalicText(textWithName);
     }
 }

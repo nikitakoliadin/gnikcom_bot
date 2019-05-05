@@ -1,5 +1,7 @@
 package com.qthegamep.gnikcom_bot.command;
 
+import com.qthegamep.gnikcom_bot.util.CommandsUtil;
+
 import lombok.val;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -25,12 +27,12 @@ public class StartCommand extends BaseCommand implements Command {
 
     private String getText(Message message) {
         if (message.isUserMessage()) {
-            // TODO: Implements
-            return "_Test user start command_";
+            val text = CommandsUtil.getRandomTextFrom(CommandsUtil.START_USER_COMMAND_TEXTS);
+            return formatToItalicText(text);
         } else {
             setReplyToMessageId(message);
-            // TODO: Implements
-            return "_Test group start command_";
+            val text = CommandsUtil.getRandomTextFrom(CommandsUtil.START_GROUP_COMMAND_TEXTS);
+            return formatToItalicText(text);
         }
     }
 }

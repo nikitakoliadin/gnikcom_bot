@@ -1,5 +1,7 @@
 package com.qthegamep.gnikcom_bot.command;
 
+import com.qthegamep.gnikcom_bot.util.CommandsUtil;
+
 import lombok.val;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -23,7 +25,7 @@ public class HelpCommand extends BaseCommand implements Command {
     }
 
     private String getText() {
-        // TODO: Implements
-        return "_Test help command_";
+        val text = CommandsUtil.getRandomTextFrom(CommandsUtil.HELP_COMMAND_TEXTS);
+        return formatToItalicText(text);
     }
 }
