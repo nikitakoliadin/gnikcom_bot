@@ -11,7 +11,6 @@ public class HelpCommand extends BaseCommand implements Command {
 
     @Override
     public SendMessage buildResponse(Update update) {
-        enableMarkdown();
         enableNotification();
         val message = update.getMessage();
         setChatId(message);

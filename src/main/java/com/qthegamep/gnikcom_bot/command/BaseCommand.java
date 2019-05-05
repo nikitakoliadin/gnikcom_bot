@@ -1,5 +1,7 @@
 package com.qthegamep.gnikcom_bot.command;
 
+import com.qthegamep.gnikcom_bot.util.LogUtil;
+
 import lombok.val;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -8,10 +10,6 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 abstract class BaseCommand implements Command {
 
     SendMessage response = new SendMessage();
-
-    void enableMarkdown() {
-        response.enableMarkdown(true);
-    }
 
     void enableNotification() {
         response.enableNotification();
@@ -28,6 +26,23 @@ abstract class BaseCommand implements Command {
     }
 
     String formatToItalicText(String text) {
-        return "_" + text + "_";
+        if (!text.contains("_")) {
+            enableMarkdown();
+            return "_" + text + "_";
+        } else if ((!text.contains("<")) && (!text.contains(">"))) {
+            enableHtml();
+            return "<i>" + text + "</i>";
+        } else {
+            LogUtil.logWarn("Can not format to italic text! Text: {}", text);
+            return text;
+        }
+    }
+
+    private void enableMarkdown() {
+        response.enableMarkdown(true);
+    }
+
+    private void enableHtml() {
+        response.enableHtml(true);
     }
 }

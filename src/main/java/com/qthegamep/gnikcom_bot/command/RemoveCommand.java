@@ -16,7 +16,6 @@ public class RemoveCommand extends BaseCommand implements Command {
     public SendMessage buildResponse(Update update) throws CommandShouldNotBeExecutedException {
         val message = update.getMessage();
         checkIfThisBotWasRemoved(message);
-        enableMarkdown();
         enableNotification();
         setChatId(message);
         setText(message);
