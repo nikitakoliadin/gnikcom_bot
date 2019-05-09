@@ -41,12 +41,17 @@ public class ApplicationConfig {
     private static void logInfo() {
         LogUtil.logWarn("{} = {}", ApplicationUtil.LOG_PATH, System.getProperty(ApplicationUtil.LOG_PATH));
         LogUtil.logWarn("{} = {}", ApplicationUtil.CONFIG_PATH, System.getProperty(ApplicationUtil.CONFIG_PATH));
+        LogUtil.logWarn("{} = {}", ApplicationUtil.COMMAND_TEXTS_PATH, System.getProperty(ApplicationUtil.COMMAND_TEXTS_PATH));
     }
 
     private static Properties loadProperties() throws IOException {
         val properties = new Properties();
         properties.load(new InputStreamReader(new FileInputStream(
                 System.getProperty(ApplicationUtil.CONFIG_PATH)),
+                StandardCharsets.UTF_8
+        ));
+        properties.load(new InputStreamReader(new FileInputStream(
+                System.getProperty(ApplicationUtil.COMMAND_TEXTS_PATH)),
                 StandardCharsets.UTF_8
         ));
         return properties;
