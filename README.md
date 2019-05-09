@@ -2,6 +2,22 @@
 
 [![LICENSE](https://img.shields.io/badge/LICENSE-Apache%202.0-blue.svg)](LICENSE)
 
+## Commands
+
+* /start:
+    * User start command
+    * Group start command
+* /help
+* System commands:
+    * Invite:
+        * Bot invite command
+        * User invite command
+        * Users invite command
+    * Remove
+    * Default:
+        * Not found default command
+        * Create group default command
+
 ## Info
 
 Run jar: `java -D"log.path"=[your_path] -D"config.path"=[your_path] -D"command.texts"=[your_path] -jar .\gnikcom_bot.jar`
