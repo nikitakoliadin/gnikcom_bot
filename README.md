@@ -4,9 +4,9 @@
 
 ## Info
 
-Run jar: `java -D"log.path"=[your_path] -D"config.path"=[your_path] -jar .\gnikcom_bot.jar`
+Run jar: `java -D"log.path"=[your_path] -D"config.path"=[your_path] -D"command.texts"=[your_path] -jar .\gnikcom_bot.jar`
 
-Example: `java -D"log.path"="C:/opt/logs/gnikcom_bot" -D"config.path"="D:\Programming\Java\Projects\gnikcom_bot\src\main\resources\properties\config.properties" -jar .\gnikcom_bot.jar`
+Example: `java -D"log.path"="C:/opt/logs/gnikcom_bot" -D"config.path"="D:\Programming\Java\Projects\gnikcom_bot\src\main\resources\properties\config.properties" -D"command.texts"="D:\Programming\Java\Projects\gnikcom_bot\src\main\resources\texts\commandTexts.properties" -jar .\gnikcom_bot.jar`
 
 ## Contact Information
 * **Author:** Koliadin Nikita
